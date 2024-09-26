@@ -213,12 +213,18 @@ export const updateBudgetDetails = async (req, res) => {
 
     // Save the updated budget
     const updatedBudget = await budget.save();
-    res.status(200).json({ message: "Updated Succesfully" }, updatedBudget);
+    
+    // Sending the response correctly
+    res.status(200).json({
+      message: "Updated Successfully",
+      updatedBudget, // Include the updated budget in the response
+    });
   } catch (error) {
     console.error("Error updating budget details:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 export const getDailyExpensesByUserId = async (req, res) => {
   try {
